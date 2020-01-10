@@ -1,9 +1,16 @@
 #!/bin/bash
-Sudo yum update
-Sudo yum install java-1.8.0-openjdk
+sudo yum update
+sudo yum install java-1.8.0-openjdk
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-sudo rpm --import 
-http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
 sudo yum install jenkins
 sudo service jenkins start
 sudo chkconfig --add jenkins
+
+#!/bin/bash
+yum install -y java-1.8.0-openjdk.x86_64 wget
+wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum install -y jenkins
+systemctl start jenkins.service
+systemctl enable jenkins.service
