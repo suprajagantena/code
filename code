@@ -8,6 +8,22 @@ sudo service jenkins start
 sudo chkconfig --add jenkins
 
 
+echo $PATH
+/usr/local/bin/terraform -v
+/usr/local/bin/terraform init
+/usr/local/bin/terraform plan
+/usr/local/bin/terraform apply -auto-approve
+/usr/local/bin/terraform output instance_ip_addr
+instance_ip_addr=$(/usr/local/bin/terraform output instance_ip_addr)
+#echo $instance_ip_addr
+#ssh ec2-user@$instance_ip_addr -o StrictHostKeyChecking=no
+ssh ec2-user@$instance_ip_addr -o StrictHostKeyChecking=no sudo yum update -y
+scp java_sample_deploy.sh ec2-user@$instance_ip_addr:/home/ec2-user/
+ssh ec2-user@$instance_ip_addr -o StrictHostKeyChecking=no chmod +x java_sample_deploy.sh
+ssh ec2-user@$instance_ip_addr -o StrictHostKeyChecking=no /home/ec2-user/java_sample_deploy.sh
+#ssh ec2-user@$instance_ip_addr -o StrictHostKeyChecking=no sudo yum install -y java-1.8.0
+#ssh ec2-user@$instance_ip_addr -o StrictHostKeyChecking=no sudo yum install -y git
+
 
 echo $PATH
 /usr/local/bin/terraform -v
