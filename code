@@ -38,3 +38,14 @@ sudo yum update -y
 sudo yum install -y java-1.8.0
 sudo yum install -y git
 
+
+Build - mvn clean package;
+
+deploy - java -jar ebstack-0.0.1-SNAPSHOT.jar;
+
+application ports - 8085;
+
+application creds - check the src/main/resources/application.properties;
+
+accessing the application - /api/v1/users/(create or list)
+
