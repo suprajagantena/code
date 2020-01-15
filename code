@@ -25,6 +25,9 @@ ssh ec2-user@$instance_ip_addr -o StrictHostKeyChecking=no /home/ec2-user/java_s
 #ssh ec2-user@$instance_ip_addr -o StrictHostKeyChecking=no sudo yum install -y git
 
 
+kill -9 $(ps -aux | grep "ebstack-0.0.1-SNAPSHOT.jar" | grep -v grep | awk '{print $2}')
+
+
 echo $PATH
 /usr/local/bin/terraform -v
 /usr/local/bin/terraform init
